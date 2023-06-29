@@ -1,0 +1,16 @@
+# The environment for the Docker image
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - numpy
+  - polars
+  - numba
+  - lxml
+  - loguru
+  - click
+  - pyteomics
+  - pip
+  - wheel
+  - procps-ng
