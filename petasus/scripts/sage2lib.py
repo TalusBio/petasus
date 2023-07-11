@@ -31,10 +31,8 @@ def read_peptides(peptides, qvalue):
     else:
         qval_col = "peptide_q"
 
-    return (
-        peptide_df
-        .filter(pl.col(qval_col) <= qvalue)
-        .select(["peptide", "charge", "filename", "scannr"])
+    return peptide_df.filter(pl.col(qval_col) <= qvalue).select(
+        ["peptide", "charge", "filename", "scannr"]
     )
 
 
@@ -73,7 +71,6 @@ def yield_psms(peptide_df, mzml_file, config):
     help="The q-value threshold for library building.",
     default=0.01,
 )
-
 @click.argument("peptides")
 @click.argument("mzml_files", nargs=-1)
 def sage2lib(peptides, mzml_files, qvalue):

@@ -59,7 +59,9 @@ def _parse_spectrum(elem: etree.Element) -> tuple[str, np.ndarray, np.ndarray]:
                     idx = 1
 
             if child.tag.endswith("binary"):
-                decoded = zlib.decompress(base64.b64decode(child.text.encode("ascii")))
+                decoded = zlib.decompress(
+                    base64.b64decode(child.text.encode("ascii"))
+                )
                 array = np.frombuffer(bytearray(decoded), dtype=np.float64)
 
         spec[idx] = array

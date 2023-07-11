@@ -30,10 +30,9 @@ def parse_mzml(mzml_data):
         total = len(run)
         logging.info("Reading %i scans...", total)
         for idx, spectrum in enumerate(run):
-            scan = (
-                re.match(r".*(scan|index)=(.+)$", spectrum["id"])
-                .groups()[1]
-            )
+            scan = re.match(r".*(scan|index)=(.+)$", spectrum["id"]).groups()[
+                1
+            ]
             rt = spectrum["scanList"]["scan"][0]["scan start time"]
             rt_map.append((int(scan), float(rt)))
             if not (idx + 1) % 10000:
