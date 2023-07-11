@@ -15,7 +15,7 @@ import polars as pl
 from loguru import logger
 from pyteomics.mzml import MzML
 
-from . import masses
+from .. import masses
 
 
 @nb.njit

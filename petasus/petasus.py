@@ -4,8 +4,11 @@ import sys
 import click
 from loguru import logger
 
-from . import scan2rt
-from . import localize_mods
+from .scripts import (
+    scan2rt,
+    localize_mods,
+    sage2lib,
+)
 
 
 @click.group()
@@ -15,8 +18,14 @@ def cli() -> None:
     The subcommands help with various tasks that may be needed before an
     EncyclopeDIA DLIB can be created.
     """
-    logger.add(sys.stderr, format="{level} {message}")
+    logger.remove()
+    logger.add(
+        sys.stderr,
+        level="INFO",
+        format="{level} {message}",
+    )
 
 
 cli.add_command(scan2rt.scan2rt)
 cli.add_command(localize_mods.localize_mods)
+cli.add_command(sage2lib.sage2lib)

@@ -9,7 +9,7 @@ import polars as pl
 from loguru import logger
 from pyteomics.mzml import MzML
 
-from . import utils
+from .. import utils
 
 
 def parse_mzml(mzml_data):
