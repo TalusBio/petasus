@@ -83,7 +83,7 @@ def sage2lib(peptides, mzml_files, qvalue):
     without Mokapot. Multiple runs should always be combined together
     prior to FDR estimation to produce control FDR in the final library.
 
-    The output is a DLIB or BLIB in the current working directory with
+    The output is a DLIB in the current working directory with
     the same stem as the PEPTIDES file.
 
     """
