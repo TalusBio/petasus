@@ -13,3 +13,4 @@ dependencies:
   - pip
   - wheel
   - procps-ng
+  - git
