@@ -41,3 +41,9 @@ def test_scan2rt():
     scan2rt_manual = pd.DataFrame(scan2rt_manual_map, columns=["scan", "rt"])
 
     pd.testing.assert_frame_equal(scan2rt_test.to_pandas(), scan2rt_manual)
+
+
+def test_abc():
+    scan2rt.scan2rt(["../data/small_220709_E5.mzML"])
+
+    assert True
