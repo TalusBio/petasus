@@ -3,7 +3,7 @@ import pandas as pd
 
 
 def test_scan2rt():
-    scan2rt_test = scan2rt.parse_mzml("../data/small_220709_E5.mzML")
+    scan2rt_test = scan2rt.parse_mzml("tests/data/small_220709_E5.mzML")
 
     scan2rt_manual_map = [
         (40487, 30.021875036176),
@@ -41,9 +41,3 @@ def test_scan2rt():
     scan2rt_manual = pd.DataFrame(scan2rt_manual_map, columns=["scan", "rt"])
 
     pd.testing.assert_frame_equal(scan2rt_test.to_pandas(), scan2rt_manual)
-
-
-def test_abc():
-    scan2rt.scan2rt(["../data/small_220709_E5.mzML"])
-
-    assert True
