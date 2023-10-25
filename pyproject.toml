@@ -26,7 +26,8 @@ dependencies = [
     "lxml",
     "numpy",
     "numba",
-    "hdf5plugin",
+    "pyarrow",
+    "hdf5plugin>=3.10.0",
     "ms2ml @ git+https://github.com/wfondrie/ms2ml.git@encyclopedia-update"
 ]
 dynamic = ["version"]
