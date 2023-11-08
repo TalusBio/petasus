@@ -29,3 +29,6 @@ def cli() -> None:
 cli.add_command(scan2rt.scan2rt)
 cli.add_command(localize_mods.localize_mods)
 cli.add_command(sage2lib.sage2lib)
+
+if __name__ == "__main__":
+    cli()
