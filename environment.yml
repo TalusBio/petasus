@@ -9,6 +9,7 @@ dependencies:
   - lxml
   - loguru
   - click
+  - pandas
   - pyteomics
   - pip
   - wheel
