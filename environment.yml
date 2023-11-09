@@ -14,5 +14,7 @@ dependencies:
   - pip
   - wheel
   - procps-ng
-  - pyarrow
   - git
+  - spectrum_utils
+  - pyarrow
+  - polars
