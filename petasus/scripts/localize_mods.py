@@ -204,10 +204,14 @@ def localize_mods(pin_file, mzml_file, config_file):
     logger.info("Reading {}...", pin_file)
     try:
         is_parquet = True
-        pin_df = pl.read_csv(pin_file, separator="\t")
+        pin_df = pl.read_parquet(pin_file)
     except pl.ArrowError:
         is_parquet = False
-        pin_df = pl.read_parquet(pin_file)
+        pin_df = pl.read_csv(
+            pin_file,
+            separator="\t",
+            truncate_ragged_lines=True,
+        )
 
     pin_df = pin_df.with_columns(
         (pl.col("expmass") - pl.col("calcmass")).alias("delta_mass"),
