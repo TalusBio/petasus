@@ -231,7 +231,7 @@ def localize_mods(pin_file, mzml_file, config_file):
     mod_scores = []
     delta_mod_scores = []
     for idx, psm in enumerate(pin_df.iter_rows(named=True)):
-        mz_array, int_array = spectra[psm.scannr]
+        mz_array, int_array = spectra[psm["scannr"]]
         b_ions, y_ions = masses.calculate_fragments(
             psm["peptide"], psm["charge"]
         )
@@ -253,9 +253,9 @@ def localize_mods(pin_file, mzml_file, config_file):
 
     logging.info("Writing new PIN file...")
     pin_df = pin_df.with_columns(
-        pl.lit(positions).alias("mod_position"),
-        pl.lit(mod_scores).alias("shifted_hyperscore"),
-        pl.lit(delta_mod_scores).alias("delta_shifted_hyperscore"),
+        pl.Series(positions).alias("mod_position"),
+        pl.Series(mod_scores).alias("shifted_hyperscore"),
+        pl.Series(delta_mod_scores).alias("delta_shifted_hyperscore"),
     )
 
     out_base = Path(pin_file).stem
@@ -266,4 +266,4 @@ def localize_mods(pin_file, mzml_file, config_file):
 
     done = time.time()
     logger.info("DONE!")
-    logger.info("Completed in %f min.", (done - start) / 60)
+    logger.info(f"Completed in {(done - start) / 60} min.")

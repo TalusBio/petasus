@@ -19,3 +19,4 @@ dependencies:
   - pyarrow
   - polars
   - psims
+  - hdf5plugin>=3.10.0

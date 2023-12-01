@@ -1,4 +1,6 @@
 """Test the localize mods functionality"""
+import math
+
 import numpy as np
 from petasus import masses
 from petasus.scripts import localize_mods
@@ -39,7 +41,7 @@ def test_log_factorial():
     n_array = np.arange(5)
     np.testing.assert_allclose(
         localize_mods.log_factorial(n_array),
-        np.log([np.math.factorial(n) for n in n_array]),
+        np.log([math.factorial(n) for n in n_array]),
     )
 
 
