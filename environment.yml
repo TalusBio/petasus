@@ -13,10 +13,17 @@ dependencies:
   - pyteomics
   - pip
   - wheel
-  - procps-ng
   - git
   - spectrum_utils
   - pyarrow
   - polars
   - psims
   - hdf5plugin>=3.10.0
+
+  # system tools:
+  - procps-ng
+  - gcc
+  - gxx_impl_linux-64
+  - gxx_linux-64
+  - binutils_impl_linux-64
+  - binutils
