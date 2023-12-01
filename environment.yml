@@ -11,14 +11,17 @@ dependencies:
   - click
   - pandas
   - pyteomics
-  - pip
   - wheel
   - git
-  - spectrum_utils
   - pyarrow
   - polars
   - psims
   - hdf5plugin>=3.10.0
+  - rdkit
+  - appdirs
+  - lark
+  - pip:
+      - spectrum_utils>=0.4.2 # problems with fastobo dependency
 
   # system tools:
   - procps-ng
