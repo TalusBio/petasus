@@ -2,8 +2,10 @@ from petasus.scripts import scan2rt
 import pandas as pd
 
 
-def test_scan2rt():
-    scan2rt_test = scan2rt.parse_mzml("tests/data/small_220709_E5.mzML")
+def test_scan2rt(data_path):
+    scan2rt_test = scan2rt.parse_mzml(
+        str(data_path / "small_220709_E5.mzML"),
+    )
 
     scan2rt_manual_map = [
         (40487, 30.021875036176),
