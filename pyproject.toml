@@ -19,17 +19,22 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 dependencies = [
-    "click",
+    "click", # General
     "loguru",
-    "polars",
-    "pyteomics",
     "lxml",
+    "appdirs",
+    "polars", # Data science
+    "pyarrow",
+    "pandas",
     "numpy",
     "numba",
-    "pyarrow",
-    "hdf5plugin>=3.10.0",
+    "lark",
+    "hdf5plugin>=3.10.0", # Proteomics
+    "ms2ml>=0.0.45",
     "pyteomics",
-    "ms2ml>=0.0.45"
+    "psims",
+    "mokapot",
+    "spectrum_utils>=0.4.2",
 ]
 dynamic = ["version"]
 
@@ -45,6 +50,12 @@ dev = [
     "pre-commit>=2.7.1",
     "black",
     "ruff",
+    "pytest",
+    "pytest-cov",
+    "pytest-datadir",
+]
+build = [
+    "wheel",
 ]
 
 [project.scripts]
