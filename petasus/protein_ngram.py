@@ -72,19 +72,14 @@ class ProteinNGram:
             for x in range(1 + len(entry) - self.ngram_size)
         ]:
             if len(x) < self.ngram_size:
-                break
+                raise
 
             if candidates is None:
-                candidates = self.ngram[x]
+                candidates = self.ngram.get(x, set())
             else:
                 candidates = candidates.intersection(self.ngram[x])
-                if len(candidates) == 1:
+                if len(candidates) <= 1:
                     break
-
-        if candidates is None:
-            raise ValueError(
-                f"No candidates found for {entry} in the n-gram database"
-            )
 
         # This makes sure the whole sequence is matched.
         # For instance ... "BAAAAB" and "BAAAAAAAAAB" share all the same length 2
@@ -138,6 +133,11 @@ class ProteinNGram:
             else:
                 kept += 1
             sequence = entry.sequence
+            if len(sequence) < ngram_size:
+                logger.warning(
+                    f"Skipping {entry_name} because it is shorter than the n-gram size"
+                )
+                continue
 
             inv_alias[i] = entry_name
             inv_seq[i] = sequence
@@ -145,8 +145,6 @@ class ProteinNGram:
                 sequence[x : x + ngram_size]
                 for x in range(1 + len(sequence) - ngram_size)
             ]:
-                if len(x) < ngram_size:
-                    break
                 ngram[x].add(i)
 
         if proteins_keep is not None:
