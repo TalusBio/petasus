@@ -50,6 +50,8 @@ dev = [
     "pre-commit>=2.7.1",
     "black",
     "ruff",
+]
+test = [
     "pytest",
     "pytest-cov",
     "pytest-datadir",
