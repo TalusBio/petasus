@@ -1,4 +1,5 @@
 """The main CLI entry point."""
+
 import sys
 
 import click

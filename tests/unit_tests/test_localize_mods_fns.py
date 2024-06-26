@@ -1,4 +1,5 @@
 """Test the localize mods functionality"""
+
 import math
 
 import numpy as np

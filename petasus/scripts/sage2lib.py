@@ -1,4 +1,5 @@
 """Converts a search results to a dlib file"""
+
 from pathlib import Path
 
 import click
