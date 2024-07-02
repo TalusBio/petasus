@@ -1,4 +1,5 @@
 """Test that localize_mods.py works."""
+
 from pathlib import Path
 
 from click.testing import CliRunner

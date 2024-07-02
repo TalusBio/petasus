@@ -3,6 +3,7 @@
 This script sanitizes the Sage modification masses and attempts to
 localize them on the peptide using a crude, highest-scoring method.
 """
+
 import json
 import logging
 import time

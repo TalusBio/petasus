@@ -1,4 +1,5 @@
 """Test that mass calculations work correctly."""
+
 import numpy as np
 from petasus import masses
 

@@ -3,6 +3,7 @@
 Note that this module is particularly tailored to work with Sage's peptide
 strings. Your mileage with other search engines may vary!
 """
+
 import re
 
 import numba as nb
