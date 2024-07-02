@@ -1,14 +1,22 @@
-FROM mambaorg/micromamba:latest
-MAINTAINER William E Fondrie <wfondrie@talus.bio>
-COPY --chown=$MAMBA_USER:$MAMBA_USER environment.yml /tmp/environment.yml
-COPY --chown=$MAMBA_USER:$MAMBA_USER dist/*.whl /tmp/
+# Base image for building
+FROM python:3.11 as build
 
-WORKDIR /app
+# Install essentials:
+RUN apt-get update && apt-get install -y build-essential libhdf5-dev
 
-RUN micromamba install -y -n base -f /tmp/environment.yml && \
-    micromamba clean --all --yes
+# Install uv:
+ADD https://astral.sh/uv/install.sh /install.sh
+RUN chmod -R 655 /install.sh  && /install.sh && rm /install.sh
 
-ARG MAMBA_DOCKERFILE_ACTIVATE=1
-RUN WHEEL=$(ls /tmp/*.whl) && pip install ${WHEEL}
+# Install our package:
+ENV VIRTUAL_ENV=/opt/venv \
+    PATH="/opt/venv/bin:$PATH"
 
-RUN pip install petasus
+ADD . /src
+RUN /root/.cargo/bin/uv venv --no-cache /opt/venv && \
+    /root/.cargo/bin/uv pip install --no-cache /src
+
+# The app stage (slim debian build):
+FROM python:3.11-slim-bookworm
+COPY --from=build /opt/venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"

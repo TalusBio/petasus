@@ -8,7 +8,8 @@ from lxml import etree
 def read(mzml_file: str) -> dict[tuple[np.ndarray, np.ndarray]]:
     """Parse the mzML file
 
-    This parser is much faster than Pyteomics, but doesn't do any error checking.
+    This parser is much faster than Pyteomics, but doesn't do any error
+    checking.
 
     Parameters
     ----------
