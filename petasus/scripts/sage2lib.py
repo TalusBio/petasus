@@ -25,7 +25,11 @@ def read_peptides(peptides, qvalue):
     polars.DataFrame
         The parsed and filtered peptides.
     """
-    peptide_df = pl.read_csv(peptides, separator="\t")
+    try:
+        peptide_df = pl.read_parquet(peptides)
+    except pl.exceptions.ComputeError:
+        peptide_df = pl.read_csv(peptides, separator="\t")
+
     peptide_df.columns = [c.lower() for c in peptide_df.columns]
     if "mokapot q-value" in peptide_df.columns:
         qval_col = "mokapot q-value"
